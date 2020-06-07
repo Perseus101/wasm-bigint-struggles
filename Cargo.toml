@@ -8,11 +8,9 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-wasm-bindgen = "0.2.59"
 console_error_panic_hook = "0.1.6"
 console_log = "0.1.2"
 log = "0.4"
-js-sys = "0.3.39"
-wasm-bindgen-futures = "0.4.12"
-
-[workspace]
+js-sys = "0.3.40"
+wasm-bindgen = "0.2.63"
+wasm-bindgen-futures = "0.4.13"
