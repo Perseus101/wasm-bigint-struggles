@@ -5,12 +5,16 @@
     <meta charset="utf-8" />
     <title>WASM Test</title>
     <script>
-        var importObject = { imports: { imported_func: arg => console.log(arg) } };
+        function native_add(a, b) {
+            console.log(`native_add: ${a} ${b}`);
+            return a + b;
+        }
+
 
         async function main(module) {
-            let imports = { env: { native_add: (a, b) => a + b } }
+            let imports = { env: { native_add: add } }
             let instance = await WebAssembly.instantiate(module, imports);
-            console.log(instance.exports.add(1n, 1n));
+            console.log(instance.exports.add(5n, 2n));
         }
 
         fetch('native_add.wasm')
