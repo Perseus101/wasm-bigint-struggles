@@ -4,20 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <title>WASM Test</title>
+    <script src="import.js"></script>
     <script>
-        function native_add(a, b) {
-            console.log(`native_add: ${a} ${b}`);
-            return a + b;
-        }
-
-
         async function main(module) {
-            let imports = { env: { native_add: add } }
+            let imports = make_imports();
             let instance = await WebAssembly.instantiate(module, imports);
-            console.log(instance.exports.add(5n, 2n));
+            console.log(instance.exports.set_i64(1, 1n));
         }
 
-        fetch('native_add.wasm')
+        fetch('api_test.wasm')
             .then((response) => response.arrayBuffer())
             .then((buf) => WebAssembly.compile(buf))
             .then(main)
